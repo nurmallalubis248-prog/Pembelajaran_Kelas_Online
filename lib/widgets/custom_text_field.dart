@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 import 'nexa_keyboard.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   final String label;
   final String? hintText;
   final TextEditingController? controller;
@@ -21,7 +21,20 @@ class CustomTextField extends StatelessWidget {
   });
 
   @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  // true = sandi tersamarkan (mata tertutup); false = sandi terlihat (mata terbuka)
+  bool _hidden = true;
+
+  @override
   Widget build(BuildContext context) {
+    final label = widget.label;
+    final hintText = widget.hintText;
+    final controller = widget.controller;
+    final isPassword = widget.isPassword;
+    final validator = widget.validator;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -43,9 +56,9 @@ class CustomTextField extends StatelessWidget {
           ),
           child: NexaKeyboardField(
             controller: controller,
-            obscureText: isPassword, // sandi tetap tersamarkan, tanpa ikon mata
-            // e-mail & sandi: huruf pertama tidak otomatis kapital
-            autoShift: !isPassword && keyboardType != TextInputType.emailAddress,
+            obscureText: isPassword && _hidden,
+                  // awal tampil huruf kapital seperti Figma; ketuk panah untuk huruf kecil
+            autoShift: !isPassword,
             validator: validator,
             style: const TextStyle(
               fontSize: 14,
@@ -64,6 +77,22 @@ class CustomTextField extends StatelessWidget {
                 color: Color(0xFF9CA3AF),
               ),
               border: InputBorder.none,
+              // ikon mata: ketuk untuk menampilkan / menyembunyikan sandi
+              suffixIcon: isPassword
+                  ? GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () => setState(() => _hidden = !_hidden),
+                      child: Icon(
+                        _hidden
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                        size: 20,
+                        color: const Color(0xFF6B7280),
+                      ),
+                    )
+                  : null,
+              suffixIconConstraints:
+                  const BoxConstraints(minWidth: 44, minHeight: 40),
             ),
           ),
         ),

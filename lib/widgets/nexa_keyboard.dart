@@ -528,17 +528,16 @@ class _NexaKeyboardViewState extends State<_NexaKeyboardView> {
       _micMsg = null;
     });
     await _speech.listen(
-  onResult: (r) =>
-      NexaKeyboard.instance.dictationUpdate(r.recognizedWords),
-  listenOptions: SpeechListenOptions(
-    localeId: _localeId,
-    listenFor: const Duration(seconds: 60),
-    pauseFor: const Duration(seconds: 5),
-    partialResults: true,
-    cancelOnError: true,
-    listenMode: ListenMode.dictation,
-  ),
-);
+      onResult: (r) => NexaKeyboard.instance.dictationUpdate(r.recognizedWords),
+      listenOptions: SpeechListenOptions(
+        localeId: _localeId,
+        listenFor: const Duration(seconds: 60),
+        pauseFor: const Duration(seconds: 5),
+        partialResults: true,
+        cancelOnError: true,
+        listenMode: ListenMode.dictation,
+      ),
+    );
   }
 
   Widget _accessoryRow() => Padding(
@@ -795,8 +794,8 @@ class _NexaKeyboardViewState extends State<_NexaKeyboardView> {
                       _Key(
                         width: keyW,
                         color: _kLetterKey,
-                        // Figma: huruf pada tombol selalu kapital
-                        label: _layer == _Layer.letters
+                        // panah shift: ketuk -> huruf kapital / huruf kecil
+                        label: _layer == _Layer.letters && _upper
                             ? keys[i].toUpperCase()
                             : keys[i],
                         onTap: () => _type(keys[i]),
@@ -827,7 +826,9 @@ class _NexaKeyboardViewState extends State<_NexaKeyboardView> {
                     child: _layer == _Layer.letters
                         ? CustomPaint(
                             size: const Size(22, 22),
-                            painter: _ShiftPainter(bar: _shift == _Shift.caps),
+                            painter: _ShiftPainter(
+                                filled: _shift != _Shift.off,
+                                bar: _shift == _Shift.caps),
                           )
                         : Text(
                             _layer == _Layer.numbers ? '#+=' : '123',
@@ -991,8 +992,11 @@ class _KeyState extends State<_Key> {
 
 /// Ikon shift berisi (putih) seperti di Figma; [bar] = garis bawah saat Caps Lock.
 class _ShiftPainter extends CustomPainter {
-  _ShiftPainter({required this.bar});
+  _ShiftPainter({required this.bar, required this.filled});
   final bool bar;
+
+  /// true = panah penuh (huruf kapital aktif); false = panah garis (huruf kecil).
+  final bool filled;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -1009,7 +1013,8 @@ class _ShiftPainter extends CustomPainter {
       ..close();
     final paint = Paint()
       ..color = Colors.white
-      ..style = PaintingStyle.fill
+      ..style = filled ? PaintingStyle.fill : PaintingStyle.stroke
+      ..strokeWidth = 1.8
       ..strokeJoin = StrokeJoin.round;
     canvas.drawPath(path, paint);
     if (bar) {
@@ -1018,7 +1023,8 @@ class _ShiftPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _ShiftPainter old) => old.bar != bar;
+  bool shouldRepaint(covariant _ShiftPainter old) =>
+      old.bar != bar || old.filled != filled;
 }
 
 const List<String> _kEmojis = [

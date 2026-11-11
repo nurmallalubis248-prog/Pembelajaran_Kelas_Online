@@ -68,20 +68,11 @@ class AppSession extends ChangeNotifier {
     return found;
   }
 
-  /// Daftar akun baru. Profil kosong sampai "Buat Profil" diisi, tetapi
-  /// Beranda/Kursus/Keuangan memakai tampilan terisi seperti desain Figma
-  /// (halaman kosong akun baru dihapus karena tidak ada di Figma).
+  /// Daftar akun baru. Akun baru KOSONG: tanpa nama, kursus, penjualan,
+  /// pendapatan, saldo, dan statistik. Data contoh Ignatius hanya untuk akun
+  /// contoh (demoEmail).
   UserAccount register(String email, String password) {
-    final s = _buildIgnatius();
-    final a = UserAccount(
-      email: email.trim(),
-      password: password,
-      courses: List.of(s.courses),
-      sales: List.of(s.sales),
-      transactions: List.of(s.transactions),
-      balance: s.balance,
-      monthlyIncomeByMonth: Map.of(s.monthlyIncomeByMonth),
-    );
+    final a = UserAccount(email: email.trim(), password: password);
     _register(a);
     _current = a;
     notifyListeners();
@@ -156,7 +147,10 @@ class AppSession extends ChangeNotifier {
   void resetTestData() {
     _ratings.clear();
     for (final a in _accounts.values) {
-      final s = _buildIgnatius();
+      // akun contoh -> data awal desain; akun lain -> kosong
+      final s = _key(a.email) == _key(demoEmail)
+          ? _buildIgnatius()
+          : UserAccount(email: a.email, password: a.password);
       a.courses
         ..clear()
         ..addAll(s.courses);
