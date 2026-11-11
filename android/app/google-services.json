@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "569666355197",
+    "project_id": "pembelajaran-kelas-online-copy",
+    "storage_bucket": "pembelajaran-kelas-online-copy.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569666355197:android:e8b29bc83c391d9dd7a394",
+        "android_client_info": {
+          "package_name": "com.example.pembelajaran_kelas_online"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRbh1J-A0UzQARItwOjMDK2MD1v8r7Kvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

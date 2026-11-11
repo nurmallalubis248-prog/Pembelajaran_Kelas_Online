@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Import Firebase Core dan hasil konfigurasi otomatis
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 import 'constants/colors.dart';
 import 'routes/app_routes.dart';
 import 'screens/main/main_shell.dart';
@@ -14,12 +19,20 @@ import 'services/test_data_reset.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Inisialisasi Firebase sesuai platform yang berjalan
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   // Bersihkan sisa data uji coba dari sesi sebelumnya (kursus, rating, video).
   await TestDataReset.clearPersisted();
+  
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  
   runApp(const MyApp());
 }
 
