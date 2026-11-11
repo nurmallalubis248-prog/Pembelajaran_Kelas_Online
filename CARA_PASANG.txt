@@ -1,0 +1,15 @@
+CARA PASANG
+1. Tutup VS Code / Android Studio sebentar, backup folder lib/ Anda.
+2. Salin isi folder "lib" dari zip ini ke folder lib/ proyek (timpa jika ditanya).
+   FILE BARU (7): state/app_session.dart, widgets/nexa_bottom_nav.dart,
+     screens/main/{main_shell,home_tab,course_tab,finance_tab,account_tab,main_widgets}.dart
+   FILE DIUBAH (4, perubahan kecil): main.dart, screens/auth_screen.dart,
+     screens/profile/create_profile_screen.dart, screens/additional_frames.dart
+3. Tidak ada package baru. Jalankan: flutter run  (atau stop lalu run ulang)
+
+CARA UJI
+- Masuk email  : igna@gmail.com + password apa saja -> semua data Ignasius terisi
+- Masuk Google/Facebook (pilih akun di pop-up)      -> data Ignasius terisi
+- Masuk email lain / Daftar akun baru                -> Beranda, Kursus, Keuangan, Profil KOSONG
+- Daftar baru lalu isi Buat Profil                   -> nama & profil terisi, kursus/keuangan tetap kosong
+- Klik tab navbar: tab aktif MERAH, tab lain HITAM

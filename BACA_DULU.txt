@@ -1,0 +1,6 @@
+Cara pasang: salin folder "lib" dan "assets" dari zip ini ke folder proyek
+(pilih Replace/Timpa), lalu jalankan: flutter pub get, lalu Stop & Run ulang
+(bukan hot reload karena ada aset baru).
+
+Isi: halaman Status Penarikan sesuai Figma, roket baru (roket_status.png),
+TapScale di tombol-tombol, dan perbaikan bug detail kursus (ID unik per kursus).
