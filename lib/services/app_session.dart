@@ -211,6 +211,7 @@ class AppSession extends ChangeNotifier {
           rating: 5,
           students: 75,
           thumbnail: 'assets/images/sampul_persegi_excel.png',
+          videoPath: 'assets/videos/excel_episode1.mp4',
         ),
       ],
       sales: const [

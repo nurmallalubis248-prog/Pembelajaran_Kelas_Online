@@ -12,7 +12,20 @@
           "package_name": "com.example.pembelajaran_kelas_online"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "569666355197-7pefj1v1qh811a4b1blo34kkf7mrmkfs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pembelajaran_kelas_online",
+            "certificate_hash": "bf748c4ac38adfab9281ed231517566d5e0adcb8"
+          }
+        },
+        {
+          "client_id": "569666355197-9nphmhra43906cua38ncc0qqns90p9gd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBRbh1J-A0UzQARItwOjMDK2MD1v8r7Kvs"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "569666355197-9nphmhra43906cua38ncc0qqns90p9gd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "569666355197-liiqkr9g05ibut5ok1vokpsdok5ibho6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pembelajaranKelasOnline"
+              }
+            }
+          ]
         }
       }
     }

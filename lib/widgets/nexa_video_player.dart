@@ -61,8 +61,11 @@ class NexaPlayerController extends ChangeNotifier {
     error = null;
     _safeNotify();
 
+    // 'assets/...' = video bawaan aplikasi; selain itu file di perangkat.
     final c = s.filePath != null
-        ? VideoPlayerController.file(File(s.filePath!))
+        ? (s.filePath!.startsWith('assets/')
+            ? VideoPlayerController.asset(s.filePath!)
+            : VideoPlayerController.file(File(s.filePath!)))
         : VideoPlayerController.networkUrl(Uri.parse(s.url!));
     try {
       await c.initialize();

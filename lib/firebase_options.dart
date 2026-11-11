@@ -57,22 +57,24 @@ class DefaultFirebaseOptions {
     projectId: 'pembelajaran-kelas-online-copy',
     storageBucket: 'pembelajaran-kelas-online-copy.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAsZnbeAJLRj1rXu3L86Fvv49PZmVJSdYQ',
     appId: '1:569666355197:ios:4889b5fad7840abfd7a394',
     messagingSenderId: '569666355197',
     projectId: 'pembelajaran-kelas-online-copy',
     storageBucket: 'pembelajaran-kelas-online-copy.firebasestorage.app',
+    androidClientId: '569666355197-7pefj1v1qh811a4b1blo34kkf7mrmkfs.apps.googleusercontent.com',
+    iosClientId: '569666355197-liiqkr9g05ibut5ok1vokpsdok5ibho6.apps.googleusercontent.com',
     iosBundleId: 'com.example.pembelajaranKelasOnline',
   );
-
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyAsZnbeAJLRj1rXu3L86Fvv49PZmVJSdYQ',
     appId: '1:569666355197:ios:4889b5fad7840abfd7a394',
     messagingSenderId: '569666355197',
     projectId: 'pembelajaran-kelas-online-copy',
     storageBucket: 'pembelajaran-kelas-online-copy.firebasestorage.app',
+    androidClientId: '569666355197-7pefj1v1qh811a4b1blo34kkf7mrmkfs.apps.googleusercontent.com',
+    iosClientId: '569666355197-liiqkr9g05ibut5ok1vokpsdok5ibho6.apps.googleusercontent.com',
     iosBundleId: 'com.example.pembelajaranKelasOnline',
   );
 
